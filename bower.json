@@ -1,0 +1,10 @@
+{
+  "name": "angular-ngqueryparams",
+  "version": "1.0.0",
+  "homepage": "https://github.com/coduxe/angular-ngqueryparams",
+  "authors": "Coduxe",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.5.6"
+  }
+}
