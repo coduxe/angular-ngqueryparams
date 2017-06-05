@@ -15,29 +15,32 @@ angular.module("angular-ngqueryparams", [])
 .provider('ngQueryParams', function() {
 
   this.$get = function() {
-    var url = window.location.href;
-    var search = url.substring(url.indexOf("?"), url.length);
-    var params = search ? search.substring(1).split("&").reduce(function(result, item) {
-      var split = item.split("=");
-      if (split[0].slice(-2) === '[]') {
-        var key = split[0].replace('[]', '');
-        result[key] ? result[key].push(split[1]) : result[key] = [split[1]];
-      }
-      else {
-        result[split[0]] = split[1];
-      }
-      return result;
-    }, {}) : {};
+
+    var getParams = function() {
+      var url = window.location.href;
+      var search = url.substring(url.indexOf("?"), url.length);
+      return (search ? search.substring(1).split("&").reduce(function(result, item) {
+        var split = item.split("=");
+        if (split[0].slice(-2) === '[]') {
+          var key = split[0].replace('[]', '');
+          result[key] ? result[key].push(split[1]) : result[key] = [split[1]];
+        }
+        else {
+          result[split[0]] = split[1];
+        }
+        return result;
+      }, {}) : {});
+    }
 
     return {
       all: function() {
-        return params;
+        return getParams();
       },
       get: function(attr) {
-        return params[attr];
+        return getParams()[attr];
       },
       exists: function(attr) {
-        return (typeof params[attr] !== 'undefined');
+        return (typeof getParams()[attr] !== 'undefined');
       }
     };
   }

@@ -42,9 +42,10 @@
   <pre>$scope.params = {{ params | json }}</pre>
 
   <!-- scripts -->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
   <script src="../src/angular-ngqueryparams.js"></script>
   <script>
+  console.log(angular);
   var app = angular.module('AngularDemo', ['angular-ngqueryparams']);
 
   // controller usage
